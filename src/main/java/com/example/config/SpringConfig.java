@@ -45,6 +45,8 @@ public class SpringConfig {
 	private final Properties hibernateProperties() {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.show_sql","true");
+		hibernateProperties.setProperty("hibernate.format_sql","true");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","create");
 		return hibernateProperties;
 	}
 }

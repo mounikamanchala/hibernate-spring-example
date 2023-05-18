@@ -24,6 +24,7 @@ public class App {
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
 		StudentService studentService = context.getBean("studentService", StudentServiceImpl.class);
+
 		do {
 			System.out.println("1. create Student");
 			System.out.println("2. update student");
