@@ -7,7 +7,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.example.config.SpringConfig;
+import com.example.model.Instrutor;
 import com.example.model.Student;
+import com.example.service.InstructorService;
+import com.example.service.InstructorServiceImpl;
 import com.example.service.StudentService;
 import com.example.service.StudentServiceImpl;
 
@@ -24,6 +27,7 @@ public class App {
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
 		StudentService studentService = context.getBean("studentService", StudentServiceImpl.class);
+		InstructorService instructorService = context.getBean("instructorService", InstructorServiceImpl.class);
 
 		do {
 			System.out.println("1. create Student");
@@ -32,7 +36,7 @@ public class App {
 			System.out.println("4. get all students");
 			System.out.println("5. delete student by id");
 			System.out.println("6. delete all students");
-
+			System.out.println("7. create instructor");
 			System.out.println("enter your choice");
 			choice = scanner.nextInt();
 			switch (choice) {
@@ -75,6 +79,14 @@ public class App {
 				break;
 			case 6:
 				studentService.deleteAllStudents();
+				break;
+			case 7:
+				Instrutor instrutor = new Instrutor();
+				System.out.println("Enter Instrctor Name");
+				instrutor.setInstructorName(scanner.next());
+				System.out.println("Enter instructor rating");
+				instrutor.setInstructorRating(scanner.nextInt());
+				instructorService.createInstrutor(instrutor);
 				break;
 			}
 		} while (choice != 0);
